@@ -1,7 +1,10 @@
+"use client"
+import { useEffect, useState } from "react"
+
 const Timer = () => {
     const startingTime = 1701834519915
-    const currentTime = Date.now()
-    const timeElapsed = currentTime - startingTime
+    const [timeElapsed, setTimeElapsed] = useState(Date.now() - startingTime)
+    const [timeDisplay, setTimeDisplay] = useState("")
 
     const convertTime = (timeElapsed: number) => {
 
@@ -9,13 +12,22 @@ const Timer = () => {
             .toISOString()
             .slice(11, 19);
         console.log(result);
+        return result;
     }
 
     convertTime(timeElapsed)
 
+    setInterval(() => {
+        setTimeElapsed(Date.now() - startingTime)
+    }, 1000)
+
+    useEffect(() => {
+        setTimeDisplay(convertTime(timeElapsed))
+    }, [timeElapsed])
+
 
     return (
-        <div></div>
+        <div>{timeDisplay}</div>
     )
 }
 
