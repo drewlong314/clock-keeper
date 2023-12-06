@@ -1,5 +1,10 @@
+import Timer from "./components/Timer";
+
 export default function Home() {
   return (
-    <div>Time Keeper</div>
+    <div>
+      <div>Time Keeper</div>
+      <Timer />
+    </div>
   )
 }
